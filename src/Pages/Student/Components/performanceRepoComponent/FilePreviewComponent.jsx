@@ -5,7 +5,7 @@ import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "../../../../../firebase";
 
 const FilePreviewComponent = () => {
-
+  const [open, setOpen] = useState(false);
   const savedAuth = JSON.parse(localStorage.getItem("auth"));
   const {id} = useParams();
 
@@ -26,8 +26,13 @@ const FilePreviewComponent = () => {
     fetchFile();
   },[]);
 
+  const handleButton = () => {
+    setOpen ((open) => !open);
+  }
+
   return (
-    <Box
+    <>
+      <Box
       sx={{
         maxWidth: 600,
         margin: "auto",
@@ -39,7 +44,11 @@ const FilePreviewComponent = () => {
       }}
     >
 
-      <Box sx={{ marginTop: 3 }}>
+      <Button variant="contained" color="primary" type="submit" sx={{ marginTop: 2 }} onClick={handleButton}>
+        { open ? "Hide Preview" : "Show Preview"}
+      </Button>
+
+      {open && <Box sx={{ marginTop: 3 }}>
         <Card
         
         >
@@ -49,9 +58,11 @@ const FilePreviewComponent = () => {
         style={{ width: "100%", height: "500px", border: "none" }}
         />
         </Card>
-      </Box>
+      </Box>}
     </Box>
+    </>
   );
+  
 }
 
 export default FilePreviewComponent ;

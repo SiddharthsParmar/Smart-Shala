@@ -44,10 +44,6 @@ const PendingList = () => {
 
   return (
     <> 
-      <LeftSideNavbar
-        isExpanded={isExpanded}
-        toggleSidebar={handleToggleSidebar}
-      />
       <div
         className={`flex-1 transition-all duration-300 ml-${
           isExpanded ? "64" : "16"

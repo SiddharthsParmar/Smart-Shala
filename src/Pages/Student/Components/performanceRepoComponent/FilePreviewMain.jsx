@@ -3,8 +3,10 @@ import FilePreview from '../submitHWComponent/FilePreview';
 import FilePreviewComponent from './FilePreviewComponent';
 import LeftSideNavbar from '../LeftSideNavBar';
 import EvaluationGSA from './EvaluationGSA';
+import { useParams } from 'react-router-dom';
 const FilePreviewMain = () => { 
   const [isExpanded, setIsExpanded] = useState(false);
+  const {id} = useParams();
 
     const handleToggleSidebar = () => {
         setIsExpanded((prevState) => !prevState);

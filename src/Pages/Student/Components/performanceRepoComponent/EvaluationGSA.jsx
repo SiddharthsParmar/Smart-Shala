@@ -7,6 +7,7 @@ const EvaluationGSA = (params) => {
   const [grammerMistakes, setGrammerMistakes] = useState('');
   const [spellingMistakes, setSpellingMistakes] = useState('');
   const [answerCorrectness, setAnswerCorrectness] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchAnalysis() {
@@ -16,6 +17,7 @@ const EvaluationGSA = (params) => {
         setGrammerMistakes(res.data.answer[0].grammer);
         setSpellingMistakes(res.data.answer[0].spelling);
         setAnswerCorrectness(res.data.answer[0].correct);
+        setLoading(false);
       } catch(err) {
         console.log(err);
       }
@@ -23,7 +25,11 @@ const EvaluationGSA = (params) => {
     }
     fetchAnalysis();
     
-  })
+  });
+
+  if(loading) {
+    return <div className="text-center mt-8">Generating Report ...</div>;
+  }
 
   return (
     <>

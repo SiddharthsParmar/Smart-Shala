@@ -16,12 +16,16 @@ const ManualAttendancePage = () => {
 
   useEffect(() => {
     async function fetchClassrooms() {
-      const res = await axios.get(`http://localhost:3000/teacher/${savedAuth.id}/classrooms`);
-      setClassrooms(res.data.classrooms);
-      setLoading(false);
+      if (savedAuth && savedAuth.id) {
+        const res = await axios.get(`http://localhost:3000/teacher/${savedAuth.id}/manual-attendance`);
+        setClassrooms(res.data.classrooms);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
     }
     fetchClassrooms();
-  }, [savedAuth.id]);
+  }, [savedAuth]);
 
   const handleClassroomClick = (classroomId) => {
     navigate(`/teacher/classrooms/${classroomId}/manual-attendance`);

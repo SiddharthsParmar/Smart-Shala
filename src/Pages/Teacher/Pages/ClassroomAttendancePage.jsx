@@ -17,9 +17,14 @@ const ClassroomAttendancePage = () => {
 
   useEffect(() => {
     async function fetchStudents() {
-      const res = await axios.get(`http://localhost:3000/classroom/${classroomId}/students`);
-      setStudents(res.data.students);
-      setLoading(false);
+      const savedAuth = JSON.parse(localStorage.getItem("auth"));
+      if (savedAuth && savedAuth.id) {
+        const res = await axios.get(`http://localhost:3000/teacher/${savedAuth.id}/classrooms/${classroomId}/manual-attendance`);
+        setStudents(res.data.students);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
     }
     fetchStudents();
   }, [classroomId]);
