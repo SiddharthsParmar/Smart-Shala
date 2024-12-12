@@ -266,7 +266,7 @@ app.post("/send-emails", async (req, res) => {
 app.get("/mail", async (req, res) => {
   var mailInfo = {
     from: 'siddharthakk3704@gmail.com', // sender address
-    to,
+    to:["siddharth.official.business@gmail.com"],
     subject: "Hello ✔",
     text: "Hello world?", // plain text body
     html: "<b>Hello world?</b>", // html body
