@@ -66,7 +66,7 @@ const ClassroomSubmittedHomeworks = () => {
                                 {submissions.map(submission => (
                                     <li key={submission.studentId} className="text-gray-700">
                                         {submission.studentName}
-                                        <a href={submission.fileUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 ml-2">View File</a>
+                                        <a href={submission.fileUrl} target="_blank" rel="noopener noreferrer" className="text-indigo-950 ml-2">View File</a>
                                     </li>
                                 ))}
                             </ul>

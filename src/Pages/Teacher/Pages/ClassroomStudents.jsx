@@ -41,7 +41,7 @@ const ClassroomStudents = () => {
     });
 
     if (loading) {
-        return <div className="text-center mt-8">Loading Students...</div>;
+        return <div className="text-center mt-8">Loading Students....</div>;
     }
 
     return (

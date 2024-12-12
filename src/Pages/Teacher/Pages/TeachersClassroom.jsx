@@ -75,7 +75,7 @@ const TeachersClassroom = () => {
                                     style={{ cursor: 'pointer' }}
                                 >
                                     <CardContent className="flex flex-col justify-center items-center h-full relative">
-                                        <Typography variant="h5" className="font-bold text-blue-600 text-center">
+                                        <Typography variant="h5" className="font-bold text-sky-800 text-center">
                                             {classroom.name}
                                         </Typography>
                                         <Typography variant="body2" className="text-gray-600 text-center mt-2">

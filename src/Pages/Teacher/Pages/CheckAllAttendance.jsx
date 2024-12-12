@@ -69,7 +69,7 @@ const CheckAllAttendance = () => {
           <h1 className="text-3xl font-bold mb-4">Check Students Attendance</h1>
           <button
             onClick={handleFetchStudents}
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+            className="bg-sky-800 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
           >
             Fetch Students
           </button>

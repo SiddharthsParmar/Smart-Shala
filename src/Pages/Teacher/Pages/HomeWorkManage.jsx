@@ -44,7 +44,7 @@ const HomeWorkManage = () => {
             <button
             onClick={()=>{navigate("/teacher/add-homework/form")}}
               type="button"
-              className="bg-blue-500 text-white font-bold text-base px-8 py-3 rounded shadow-md hover:shadow-lg  transition duration-150"
+              className="bg-sky-800 text-white font-bold text-base px-8 py-3 rounded shadow-md hover:shadow-lg  transition duration-150"
             >
               Add Homework +
             </button>

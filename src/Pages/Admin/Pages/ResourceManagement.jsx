@@ -46,6 +46,7 @@ const ResourceManagement = () => {
         try {
             await axios.post(`http://localhost:3000/resource-request/${id}/approve`);
             fetchRequests();
+            fetchResources();
         } catch (error) {
             console.error('Error approving request:', error);
         }
@@ -87,8 +88,21 @@ const ResourceManagement = () => {
                         <h2 className="text-2xl font-bold mb-4">Resources</h2>
                         <ul>
                             {resources.map(resource => (
-                                <li key={resource._id} className="mb-2">
-                                    {resource.name} - {resource.quantity}
+                                <li key={resource._id} className="mb-4">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <span className="font-semibold">{resource.name}</span>
+                                        <span>{resource.quantity - resource.usedQuantity} remaining</span>
+                                    </div>
+                                    <div className="flex justify-between items-center mb-2">
+                                        <span className="font-semibold">Used:</span>
+                                        <span>{resource.usedQuantity}</span>
+                                    </div>
+                                    <div className="w-full bg-gray-200 rounded-full h-4">
+                                        <div
+                                            className="bg-blue-500 h-4 rounded-full"
+                                            style={{ width: `${(resource.usedQuantity / resource.quantity) * 100}%` }}
+                                        ></div>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
@@ -97,9 +111,8 @@ const ResourceManagement = () => {
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <h2 className="text-2xl font-bold mb-4">Requests</h2>
                         <ul>
-                            {requests.map(request => (
+                            {requests.filter(request => request.status !== "Approved").map(request => (
                                 <li key={request._id} className="mb-2">
-                                    {/* <h1>{request.teacher}</h1> */}
                                     {request.teacher?.name || 'Unknown Teacher'} requested {request.quantity} of {request.resource?.name || 'Unknown Resource'}
                                     <button onClick={() => approveRequest(request._id)} className="ml-2 bg-green-500 text-white p-1 rounded">Approve</button>
                                 </li>

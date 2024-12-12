@@ -75,7 +75,7 @@ export const approveResourceRequest = async (req, res) => {
             return res.status(400).json({ message: "Insufficient resource quantity" });
         }
 
-        resource.quantity -= request.quantity;
+        resource.usedQuantity += request.quantity;
         request.status = "Approved";
 
         await resource.save();

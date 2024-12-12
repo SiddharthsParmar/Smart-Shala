@@ -9,6 +9,10 @@ const resourceSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    usedQuantity: {
+        type: Number,
+        default: 0,
+    },
     description: {
         type: String,
     },

@@ -15,7 +15,7 @@ const UnitTestBox = ({ position = "relative", title = "Box Title", progress = 50
         </div>
         <button
           onClick={onClick}
-          className="text-gray-500 hover:text-blue-500"
+          className="text-gray-500 hover:text-sky-800"
         >
           ▶ {/* Play Icon (or custom button action) */}
         </button>
@@ -24,7 +24,7 @@ const UnitTestBox = ({ position = "relative", title = "Box Title", progress = 50
       {/* Progress Bar */}
       <div className="w-full bg-gray-300 h-3 rounded-full mt-10">
         <div
-          className="bg-blue-500 h-3 rounded-full"
+          className="bg-sky-800 h-3 rounded-full"
           style={{ width: `${progress}%` }} // Dynamic progress percentage
         ></div>
       </div>

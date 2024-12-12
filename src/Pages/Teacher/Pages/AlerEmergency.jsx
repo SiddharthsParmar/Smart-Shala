@@ -52,7 +52,7 @@ function AlerEmergency() {
                     required
                 />
             </div>
-            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+            <button type="submit" className="bg-sky-800 text-white py-2 px-4 rounded">
                 Send Alert
             </button>
         </form>

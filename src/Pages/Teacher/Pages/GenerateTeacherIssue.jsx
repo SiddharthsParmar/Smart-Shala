@@ -49,13 +49,13 @@ const GenerateTeacherIssue = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100 font-sans text-inido-950">
       <TeacherLeftSideNavBar isExpanded={isExpanded} toggleSidebar={toggleSidebar} />
       <div className="flex-1 p-8 flex items-center justify-center">
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4">Generate Issue</h2>
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-sm w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-4 text-center">Generate Issue</h2>
           <div className="mb-4">
-            <label className="block text-gray-700">Description</label>
+            <label className="block ">Description</label>
             <input
               type="text"
               value={description}
@@ -91,7 +91,7 @@ const GenerateTeacherIssue = () => {
               }
             </select>
           </div>
-          <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">Generate Issue</button>
+          <button type="submit" className="w-full bg-sky-800 text-white p-2 rounded">Generate Issue</button>
         </form>
       </div>
     </div>

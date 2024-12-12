@@ -36,7 +36,7 @@ const ViewClassrooms = () => {
         <div className="flex min-h-screen bg-gray-100">
             <TeacherLeftSideNavBar isExpanded={isExpanded} toggleSidebar={toggleSidebar} />
             <div className={`flex-1 transition-width duration-300 ml-${isExpanded ? "64" : "16"} p-8`}>
-                <h1 className="text-3xl font-bold text-center mb-8">Classrooms</h1>
+                <h1 className="text-3xl font-bold text-center mb-8 bg-sky-800 p-6 text-white">Classrooms</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {classrooms.map(classroom => (
                         <div

@@ -44,15 +44,15 @@ const RequestResource = () => {
         <div className="flex">
             <TeacherLeftSideNavBar isExpanded={isExpanded} toggleSidebar={toggleSidebar} />
             <div className={`flex-1 p-6 transition-all duration-300 ${isExpanded ? 'ml-64' : 'ml-16'}`}>
-                <h1 className="text-3xl font-bold mb-6">Request Resource</h1>
+                <h1 className="text-3xl font-bold mb-6 bg-sky-800 text-white text-center w-full p-6 ">Request Resource</h1>
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                    <h2 className="text-2xl font-bold mb-4">Select Resource</h2>
+                    <h2 className="text-2xl font-bold mb-4 text-center">Select Resource</h2>
                     <select
                         value={selectedResource}
                         onChange={(e) => setSelectedResource(e.target.value)}
                         className="w-full p-2 mb-4 border rounded"
                     >
-                        <option value="">Select Resource</option>
+                        <option value="" change="ResourceMan">Select Resource</option>
                         {resources.map(resource => (
                             <option key={resource._id} value={resource._id}>{resource.name}</option>
                         ))}
@@ -66,7 +66,7 @@ const RequestResource = () => {
                     />
                     <button
                         onClick={handleRequest}
-                        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                        className="w-full bg-sky-800 text-white p-2 rounded hover:bg-sky-600"
                     >
                         Request
                     </button>

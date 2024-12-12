@@ -31,18 +31,18 @@ const HWListComponent = (props) => {
 
   return (
       <>
-        <div className="bg-white p-5 m-1 flex justify-between items-center cursor-pointer hover:bg-blue-400 hover:rounded-md  " onClick={()=> {
+        <div className="bg-white p-5 m-1 flex justify-between items-center cursor-pointer hover:bg-sky-400 hover:rounded-md  " onClick={()=> {
                 navigate(`/teacher/${savedAuth.id}/homework/${props.homework._id}/submissions`);
               }} >
           <div className='flex flex-col'>
-            <h2>{props.homework.title}</h2>
-            <p className='text-sm text-gray-500'>
+            <h2 className='text-sky-900 font-semibold'>{props.homework.title}</h2>
+            <p className='text-sm text-gray-800'>
               {props.homework.description}
             </p>
-            <p className='text-sm text-gray-500'>
+            <p className='text-sm text-gray-800'>
               {classroom && `Class : ${classroom.name}`}
             </p>
-            <p className='text-sm text-gray-500'>
+            <p className='text-sm text-gray-800'>
               {teacher && `Assigned By : ${teacher.name}`}
             </p>
           </div>

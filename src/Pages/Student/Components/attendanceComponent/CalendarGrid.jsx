@@ -30,7 +30,7 @@ const CalendarGrid = ({ currentDate, presentDays, absentDays }) => {
                 : status === "Absent"
                 ? "bg-red-100 text-red-700 border border-red-200"
                 : status === "Holiday"
-                ? "bg-blue-100 text-blue-700 border border-blue-200"
+                ? "bg-sky-100 text-blue-700 border border-sky-200"
                 : "bg-white text-gray-700 border border-gray-100"
             }`}
           >

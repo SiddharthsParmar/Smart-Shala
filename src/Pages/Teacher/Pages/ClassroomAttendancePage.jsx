@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TeacherLeftSideNavBar from '../Components/TeacherLeftSideNavBar';
-import { Card, CardContent, Typography, Button, Grid } from '@mui/material';
 
 const ClassroomAttendancePage = () => {
   const { classroomId } = useParams();
@@ -33,7 +32,7 @@ const ClassroomAttendancePage = () => {
     const url = status === 'present' ? 
       `http://localhost:3000/student/${studentId}/attendance/present` : 
       `http://localhost:3000/student/${studentId}/attendance/absent`;
-    await axios.post(url);
+    await axios.get(url);
     alert(`Student marked ${status}`);
   };
 
@@ -45,36 +44,32 @@ const ClassroomAttendancePage = () => {
     <div className="flex min-h-screen bg-gray-100">
       <TeacherLeftSideNavBar isExpanded={isExpanded} toggleSidebar={toggleSidebar} />
       <div className={`flex-1 p-8 transition-all duration-300 ${isExpanded ? 'ml-64' : 'ml-16'}`}>
-        <button onClick={() => navigate(-1)} className="mb-4 p-2 bg-blue-500 text-white rounded">Back to Classrooms</button>
+        <button onClick={() => navigate(-1)} className="mb-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200">Back to Classrooms</button>
         <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-4">Classroom Attendance</h2>
-          <Grid container spacing={3}>
+          <h2 className="text-3xl font-bold mb-6 text-gray-800">Classroom Attendance</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {students.map((student) => (
-              <Grid item xs={12} md={6} key={student._id}>
-                <Card>
-                  <CardContent>
-                    <Typography variant="h6" component="div">
-                      {student.name}
-                    </Typography>
-                    <Button 
-                      variant="contained" 
-                      color="primary" 
+              <div key={student._id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2 text-gray-700">{student.name}</h3>
+                  <div className="flex space-x-4">
+                    <button 
+                      className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200" 
                       onClick={() => markAttendance(student._id, 'present')}
                     >
                       Mark Present
-                    </Button>
-                    <Button 
-                      variant="contained" 
-                      color="secondary" 
+                    </button>
+                    <button 
+                      className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200" 
                       onClick={() => markAttendance(student._id, 'absent')}
                     >
                       Mark Absent
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Grid>
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-          </Grid>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
 import express from "express";
-
 const app = express();
 const PORT = 3000;
 import twilio from 'twilio';
@@ -266,7 +265,7 @@ app.post("/send-emails", async (req, res) => {
 app.get("/mail", async (req, res) => {
   var mailInfo = {
     from: 'siddharthakk3704@gmail.com', // sender address
-    to:["siddharth.official.business@gmail.com"],
+    to,
     subject: "Hello ✔",
     text: "Hello world?", // plain text body
     html: "<b>Hello world?</b>", // html body

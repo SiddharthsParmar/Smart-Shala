@@ -42,7 +42,7 @@ const RightSideBar = ({ uploadedFiles }) => {
 
   return (
     <div className="p-4 bg-gray-100 min-h-screen shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">History</h2>
+      <h2 className="text-2xl font-bold mb-4 text-sky-800">History</h2>
       <ul className="space-y-2">
         {urls.map(({ homeworkId, url, fileName }, index) => (
           <li

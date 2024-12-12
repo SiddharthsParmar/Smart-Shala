@@ -1,16 +1,16 @@
 .fontColorBlue{
-    color:#1976d2;
+    color:#075985;
 } 
 .bGcolor{
-    color: #1976d2;
+    color: #075985;
 } 
 .bGcolor:hover{
-    background-color :#1976d2; 
+    background-color :#075985; 
     color: white; 
 } 
 .textHeadSize{
    font-size: 30px;
 } 
 .bg-blue{
-    background-color: #1976d2;
+    background-color:#075985;
 }

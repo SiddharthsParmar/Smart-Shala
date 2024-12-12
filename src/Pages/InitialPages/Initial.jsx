@@ -16,7 +16,7 @@ const Initial = () => {
         +
     </div>
    </NavLink> 
-    <h2 className='mt-5'>Already have an Account ?? <NavLink to="/commonlogin" className='text-blue-600 mt-3' >
+    <h2 className='mt-5'>Already have an Account ?? <NavLink to="/commonlogin" className='text-sky-800 mt-3' >
         Login
     </NavLink>
     </h2>

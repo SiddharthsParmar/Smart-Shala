@@ -8,17 +8,17 @@ const CommonSignup = () => {
         <h1 className="text-3xl font-bold text-blue-600 mb-8">Signup As</h1>
         <div className="flex space-x-5">
           <NavLink to='/signup/admin'>
-            <div className="bg-blue-500 text-white shadow-xl px-20 py-5 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
+            <div className="bg-blue-500 text-white shadow-m px-20 py-5 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
               Admin
             </div>
           </NavLink>
           <NavLink to='/signup/teacher'>
-            <div className="bg-blue-500 text-white shadow-xl px-20 py-5 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
+            <div className="bg-blue-500 text-white shadow-m px-20 py-5 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
               Teacher
             </div>
           </NavLink>
           <NavLink to='/signup/student'>
-            <div className="bg-blue-500 text-white shadow-xl px-20 py-5 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
+            <div className="bg-blue-500 text-white shadow-m px-20 py-5 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
               Student
             </div>
           </NavLink>

@@ -44,8 +44,8 @@ const LandingPage = () => {
         {/* Section Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
           {/* Latest News */}
-          <div className="bg-blue-100 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-blue-800 mb-4">Latest News</h3>
+          <div className="bg-sky-200 p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold text-sky-800 mb-4">Latest News</h3>
             <ul className="text-gray-700 space-y-2">
               <li>• Portal maintenance scheduled for next weekend.</li>
               <li>• New initiatives launched for digital inclusion.</li>
@@ -55,7 +55,7 @@ const LandingPage = () => {
 
           {/* FAQs */}
           <div className="bg-blue-100 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-blue-800 mb-4">FAQs</h3>
+            <h3 className="text-xl font-semibold text-sky-800 mb-4">FAQs</h3>
             <ul className="text-gray-700 space-y-2">
               <li>• How to create an account?</li>
               <li>• What services are available?</li>
@@ -65,7 +65,7 @@ const LandingPage = () => {
 
           {/* Activities & Initiatives */}
           <div className="bg-blue-100 p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-blue-800 mb-4">Activities & Initiatives</h3>
+            <h3 className="text-xl font-semibold text-sky-800 mb-4">Activities & Initiatives</h3>
             <ul className="text-gray-700 space-y-2">
               <li>• Digital India Campaign</li>
               <li>• Swachh Bharat Mission</li>
