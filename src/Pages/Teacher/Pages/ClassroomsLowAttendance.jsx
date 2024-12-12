@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import TeacherLeftSideNavBar from '../Components/TeacherLeftSideNavBar';
 
@@ -9,6 +9,7 @@ const ClassroomsLowAttendance = () => {
     const teacherId = savedAuth ? savedAuth.id : null;
     const [isExpanded, setIsExpanded] = useState(false);
     const [selectedStudents, setSelectedStudents] = useState({});
+    const audioRef = useRef(null); // Reference for audio element
 
     const toggleSidebar = () => {
         setIsExpanded(!isExpanded);
@@ -54,6 +55,7 @@ const ClassroomsLowAttendance = () => {
         try {
             const response = await axios.post(`http://localhost:3000/send-emails`, { students: studentsToSendEmails });
             setMessage(response.data.message);
+            playSound(); // Play sound on successful email sending
         } catch (error) {
             console.error("Error sending emails:", error);
             setMessage('Error sending emails');
@@ -126,6 +128,8 @@ const ClassroomsLowAttendance = () => {
                     Send SMS
                 </button>
             </div>
+            {/* Audio element to play the sound */}
+            <audio ref={audioRef} src="https://upload.wikimedia.org/wikipedia/commons/8/81/Alarm_or_siren.ogg" />
         </div>
     );
 };

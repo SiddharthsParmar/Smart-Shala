@@ -1,9 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import axios from 'axios';
 import TeacherLeftSideNavBar from '../Components/TeacherLeftSideNavBar';
 import toast from 'react-hot-toast';
+import { useGlobalContext } from '../../../context/GlobalProvider.jsx';
+
 
 function TeacherEmergencyForm() {
+    const { triggerEvent } = useGlobalContext();
+
     const [formData, setFormData] = useState({
         emergencyType: '',
         severity: '',
@@ -12,42 +16,27 @@ function TeacherEmergencyForm() {
 
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const audioRef = useRef(null);
-
     const toggleSidebar = () => {
         setIsExpanded((prevState) => !prevState);
-    };
-
-    // Function to play the Oddbounce.ogg sound for 5 seconds
-    const playSound = () => {
-        if (audioRef.current) {
-            audioRef.current.currentTime = 0; // Reset audio to start
-            audioRef.current.play().catch((error) => {
-                console.error('Error playing sound:', error);
-            });
-
-            // Stop the audio after 5 seconds
-            setTimeout(() => {
-                audioRef.current.pause();
-                audioRef.current.currentTime = 0; // Reset audio
-            }, 10000); // 5000ms = 5 seconds
-        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:3000/teacher/emergency', formData);
-            toast.success("Added successfully");
+            toast.success("Alert sent successfully");
 
-            // Play the sound when the alert is sent
-            playSound();
+            // Add alert to global context
+            const alertData = {
+                ...formData,
+                createdAt: new Date(),
+            };
+            addAlert(alertData);
 
             setFormData({ emergencyType: '', severity: '', location: '' });
-            // Notify the admin (if needed) by triggering a signal on the backend or using a WebSocket here
         } catch (error) {
             console.error(error);
-            toast.error("Failed to submit alert.");
+            toast.error("Failed to send alert.");
         }
     };
 
@@ -119,7 +108,8 @@ function TeacherEmergencyForm() {
                         </div>
                         <div className="flex items-center justify-between">
                             <button
-                                type="submit"
+                            onClick={triggerEvent}
+                                type="button"
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             >
                                 Send Alert
@@ -128,9 +118,6 @@ function TeacherEmergencyForm() {
                     </form>
                 </div>
             </div>
-
-            {/* Audio element to play the Oddbounce.ogg sound */}
-            <audio ref={audioRef} src="https://upload.wikimedia.org/wikipedia/commons/8/81/Alarm_or_siren.ogg" />
         </div>
     );
 }

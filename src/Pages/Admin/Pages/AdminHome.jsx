@@ -1,4 +1,4 @@
-    import NoticeBoard from "../Components/NoticeBoard.jsx";
+import NoticeBoard from "../Components/NoticeBoard.jsx";
     import TopPerformer from "../Components/TopPerformer.jsx";
 
     import UpperNavbar from "../Components/UpperNavbar.jsx";
@@ -192,7 +192,7 @@ import CardWithPopUp from "../Components/CardWithPopUp.jsx";
 <div className="h-96 w-full mx-1 rounded p-2 flex flex-col items-center shadow-lg">
  
   <div className=" bg-red-100 rounded-full w-20 h-20 mb-5">
-  <img onClick={PlaySound}  src="https://cdn-icons-png.flaticon.com/128/2014/2014825.png"></img>
+  <img   src="https://cdn-icons-png.flaticon.com/128/2014/2014825.png"></img>
   </div>
 
 
