@@ -9,7 +9,7 @@ import nodemailer from 'nodemailer';
 const accountSid = 'AC251fd490ae65ab13ffc34b4e68a82dfe'; // Replace with your Twilio SID
 const authToken = '3285c20633da693813a73bc6872d2abe';     // Replace with your Twilio Auth Token
 const messagingServiceSid = 'MG54ac2806b8f292653839aee69c108a21'; // Replace with your Twilio Messaging Service SID
-const client = twilio(accountSid, authToken);
+const client = twilio(accountSid, authToken);
 
 
 import {

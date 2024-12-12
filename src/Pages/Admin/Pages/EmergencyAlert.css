@@ -1,0 +1,44 @@
+.emergency-alert {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+  }
+  
+  .emergency-alert.high {
+    border-color: #f00;
+    background-color: #ffecec;
+  }
+  
+  .emergency-alert.medium {
+    border-color: #ff9900;
+    background-color: #ffffe0;
+  }
+  
+  .emergency-alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .emergency-alert-type {
+    font-weight: bold;
+  }
+  
+  .emergency-alert-timestamp {
+    font-size: 0.8em;
+    color: #999;
+  }
+  
+  .emergency-alert-delete {
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Add more CSS rules to customize the appearance further */

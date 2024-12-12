@@ -43,7 +43,7 @@ const TopPerformersTable = () => {
             <table className="w-full shadow-sm rounded-md ">
               <thead>
                 <tr className="bg-gray-100">
-                  <th className="py-2 px-4 text-left">Photo</th>
+                  
                   <th className="py-2 px-4 text-left">Name</th>
                   <th className="py-2 px-4 text-left">Roll No</th>
                   <th className="py-2 px-4 text-left">Std</th>
@@ -56,9 +56,7 @@ const TopPerformersTable = () => {
                     key={student.id}
                     className="hover:bg-gray-200 transition duration-150"
                   >
-                    <td className="py-2 px-4">
-                      <img src={student.photo} alt={student.name} className="w-10 h-10 rounded-full" />
-                    </td>
+                    
                     <td className="py-2 px-4">{student.name}</td>
                     <td className="py-2 px-4">{student.rollNo}</td>
                     <td className="py-2 px-4">{student.class}</td>
