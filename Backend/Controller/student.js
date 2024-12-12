@@ -66,57 +66,63 @@ export const deleteStudent = async(req,res)=>{
     }
 }
 
-//mark attendance as preset
+//mark attendance as present
 export const markPresent = async(req, res) => {
     const id = req.params.id;
-    const date = new Date().toISOString().split('T')[0];
+    const date = new Date().toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
     const student = await Student.findById(id);
 
     if(student == null) {
         res.status(404).json({message : "Student does not exist"});
         return;
     }
-    const index = student.absentDays.indexOf(date);
-    if(index > -1) {
-        student.absentDays.splice(index, 1);
+
+    // Remove the date from absentDays if it exists
+    const absentIndex = student.absentDays.indexOf(date);
+    if(absentIndex > -1) {
+        student.absentDays.splice(absentIndex, 1);
     }
 
+    // Add the date to presentDays if it doesn't already exist
     if(!student.presentDays.includes(date)) {
         student.presentDays.push(date);
     }
 
     student.save().then(()=>{
-        res.status(200).json({ message: "Student marked present Successfully" });
+        res.status(200).json({ message: "Student marked present successfully" });
     }).catch((err)=>{
         console.log(err);
-        res.send("Error Occurred !!!");
+        res.status(500).json({ message: "Error occurred while marking present" });
     });
 }
 
 //mark attendance as absent
 export const markAbsent = async(req, res) => {
     const id = req.params.id;
-    const date = new Date().toISOString().split('T')[0];
+    const date = new Date().toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
     const student = await Student.findById(id);
 
     if(student == null) {
         res.status(404).json({message : "Student does not exist"});
         return;
     }
-    const index = student.presentDays.indexOf(date);
-    if(index > -1) {
-        student.presentDays.splice(index, 1);
+
+    // Remove the date from presentDays if it exists
+    const presentIndex = student.presentDays.indexOf(date);
+    if(presentIndex > -1) {
+        student.presentDays.splice(presentIndex, 1);
     }
 
+    // Add the date to absentDays if it doesn't already exist
     if(!student.absentDays.includes(date)) {
         student.absentDays.push(date);
     }
 
     student.save().then(()=>{
-        res.status(200).json({ message: "Student marked absent Successfully" });
+        res.status(200).json({ message: "Student marked absent successfully" });
     }).catch((err)=>{
         console.log(err);
-        res.send("Error Occurred !!!");
+        res.status(500).json({ message: "Error occurred while marking absent" });
     });
 }
 

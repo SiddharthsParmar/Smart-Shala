@@ -46,6 +46,21 @@ const CheckAllAttendance = () => {
     }
   };
 
+  const handleSendSMS = async () => {
+    if (!teacherId) {
+      setMessage('Teacher ID not found');
+      return;
+    }
+
+    try {
+      const response = await axios.post(`http://localhost:3000/teacher/send-low-attendance-sms`, { students });
+      setMessage(response.data.message);
+    } catch (error) {
+      console.log("Error:", error);
+      setMessage('Error sending SMS');
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       <TeacherLeftSideNavBar isExpanded={isExpanded} toggleSidebar={toggleSidebar} />
@@ -67,14 +82,21 @@ const CheckAllAttendance = () => {
               {students.map(student => (
                 <li key={student._id} className="mb-2">
                   {student.name} - {student.email}
+                  {student.name} - {student.contact}
                 </li>
               ))}
             </ul>
-            <button
+            {/* <button
               onClick={handleSendEmails}
               className="mt-4 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition"
             >
               Send Emails
+            </button> */}
+            <button
+              onClick={handleSendSMS}
+              className="mt-4 bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition"
+            >
+              Send SMS
             </button>
           </div>
         )}

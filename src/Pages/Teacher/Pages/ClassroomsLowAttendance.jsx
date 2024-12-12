@@ -46,17 +46,38 @@ const ClassroomsLowAttendance = () => {
                 if (selectedStudents[classroomId][studentId]) {
                     const classroom = classroomsData.find(c => c.classroom._id === classroomId);
                     const student = classroom.lowAttendanceStudents.find(s => s._id === studentId);
-                    studentsToSendEmails.push(student);
+                    studentsToSendEmails.push(student.email);
                 }
             }
         }
 
         try {
-            const response = await axios.post(`http://localhost:3000/teacher/send-low-attendance-emails`, { students: studentsToSendEmails });
+            const response = await axios.post(`http://localhost:3000/send-emails`, { students: studentsToSendEmails });
             setMessage(response.data.message);
         } catch (error) {
             console.error("Error sending emails:", error);
             setMessage('Error sending emails');
+        }
+    };
+
+    const handleSendSMS = async () => {
+        const studentsToSendSMS = [];
+        for (const classroomId in selectedStudents) {
+            for (const studentId in selectedStudents[classroomId]) {
+                if (selectedStudents[classroomId][studentId]) {
+                    const classroom = classroomsData.find(c => c.classroom._id === classroomId);
+                    const student = classroom.lowAttendanceStudents.find(s => s._id === studentId);
+                    studentsToSendSMS.push("+91" + JSON.stringify(student.contact));
+                }
+            }
+        }
+
+        try {
+            const response = await axios.post(`http://localhost:3000/teacher/send-low-attendance-sms`, { students: studentsToSendSMS });
+            setMessage(response.data.message);
+        } catch (error) {
+            console.error("Error sending SMS:", error);
+            setMessage('Error sending SMS');
         }
     };
 
@@ -97,6 +118,12 @@ const ClassroomsLowAttendance = () => {
                     className="mt-8 bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition"
                 >
                     Send Emails
+                </button>
+                <button
+                    onClick={handleSendSMS}
+                    className="mt-8 bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition"
+                >
+                    Send SMS
                 </button>
             </div>
         </div>

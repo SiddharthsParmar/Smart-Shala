@@ -89,6 +89,41 @@ export const getClassroomsOfTeacher = async (req, res) => {
     }
 }
 
+// Fetch all classrooms under the current teacher
+export const getClassroomsOfTeacher2 = async (req, res) => {
+    let id = req.params.teacherId;
+    let teacher = await Teacher.findById(id);
+
+    if (teacher == null) {
+        res.status(404).json({ "message": "Teacher does not exist" });
+    } else {
+        let classrooms = [];
+
+        for (let i = 0; i < teacher.classrooms.length; i++) {
+            let classroom = await Classroom.findById(teacher.classrooms[i]);
+            if (classroom) {
+                classrooms.push(classroom);
+            }
+        }
+        res.status(201).json({ message: "success", classrooms });
+    }
+}
+
+
+export const getStudentsOfClassroom2 = async (req, res) => {
+    const classroomId = req.params.classroomId;
+
+    try {
+        const classroom = await Classroom.findById(classroomId).populate('students');
+        if (!classroom) {
+            return res.status(404).json({ message: "Classroom does not exist" });
+        }
+        res.status(200).json({ students: classroom.students });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
 //get assigned homeworks of teacher
 export const getHomeworkAssignedByTeacher = async (req, res) => {
     const id = req.params.id;
@@ -194,4 +229,25 @@ export const getClassroomsAndLowAttendanceStudents = async (req, res) => {
     }
 
     res.status(200).json({ message: "Data fetched successfully", classroomsData });
+};
+
+
+//-----------------------------------------------------------------------------------------
+export const sendSMSToLowAttendanceStudents = async (req, res) => {
+    const { students } = req.body;
+    // console.log(students);
+    const smsPromises = students.map(student => {
+        return axios.post('http://localhost:3000/send-sms', {
+            to: student, // Assuming student object has a phone property
+            body: `Dear ${student.name}, your attendance is below 75%. Please ensure to attend more classes.`,
+        });
+    });
+
+    try {
+        await Promise.all(smsPromises);
+        res.status(200).json({ message: "SMS sent successfully" });
+    } catch (error) {
+        console.error("Error sending SMS:", error.response ? error.response.data : error.message);
+        res.status(500).json({ message: "Error sending SMS", error: error.response ? error.response.data : error.message });
+    }
 };
